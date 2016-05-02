@@ -11,6 +11,7 @@ set backspace=2
 " extra scroll lines
 set scrolloff=4
 
+let g:enable_bold_font = 1
 
 " kill that nasty backup which will probably save my life but annoys me to
 " death everytime I commit to a new project
@@ -21,11 +22,12 @@ set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-" Color scheme
+" This affects colors in a weird way. Try both, but light>dark imho
+set background=dark
 " Use the colors from the terminal
-let g:hybrid_use_Xresources = 1
-"This affects colors in a weird way. Try both, but light>dark imho
-set background=light
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" Color scheme
 colorscheme hybrid
 
 " good ol %% expansion
@@ -52,6 +54,7 @@ NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'artoj/qmake-syntax-vim'
 NeoBundle 'a.vim'
 NeoBundle 'Valloric/YouCompleteMe', {
@@ -96,6 +99,7 @@ autocmd FileType cpp setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 n
 
 " Have branch in vim-airline
 let g:airline#extensions#branch#enabled=1
+let g:airline_theme = "hybrid"
 
 " Noob settings for syntastic
 set statusline+=%#warningmsg#
