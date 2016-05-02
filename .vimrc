@@ -106,6 +106,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_pylint_args = '--load-plugins pylint_django'
+
 " Erasing cpp checkers since we use YouCompleteMe
 let g:syntastic_cpp_checkers = []
 " No need to confirm extra conf, who needs security amirite
