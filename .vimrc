@@ -11,7 +11,11 @@ set backspace=2
 " extra scroll lines
 set scrolloff=4
 
-let g:enable_bold_font = 1
+" will only do case sensitive search if a capital letter is present in the
+" search term. You can override this with \C or \c anywhere in the term
+" if in the need to do case sensitive replacements, use the I flag for :s
+set ignorecase
+set smartcase
 
 " kill that nasty backup which will probably save my life but annoys me to
 " death everytime I commit to a new project
@@ -21,14 +25,6 @@ set noswapfile
 set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
-
-" This affects colors in a weird way. Try both, but light>dark imho
-set background=dark
-" Use the colors from the terminal
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-" Color scheme
-colorscheme hybrid
 
 " good ol %% expansion
 cabbr <expr> %% expand('%:p:h')
@@ -57,6 +53,7 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'artoj/qmake-syntax-vim'
 NeoBundle 'a.vim'
+NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build'      : {
         \ 'mac'     : './install.py',
@@ -96,6 +93,10 @@ NeoBundleCheck
 " of spaces. JUST WTF.
 autocmd FileType python setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+autocmd FileType javascript setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType html setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType css setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " Have branch in vim-airline
 let g:airline#extensions#branch#enabled=1
@@ -106,8 +107,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pylint']
@@ -127,3 +128,13 @@ command CI execute "%s/    /\t/g"
 let g:neobundle#install_process_timeout = 1500
 " Search paths for the YouCompleteMe HPP/CPP switcher plugin a.vim
 let g:alternateSearchPath = 'reg:/src/include//,reg:/include/src//,sfr:../source,sfr:../src,sfr:../include,sfr:../inc'
+
+" This affects colors in a weird way. Try both, but light>dark imho
+set background=dark
+" Use the colors from the terminal
+let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" Enable bold fonts
+let g:enable_bold_font = 1
+" Color scheme
+colorscheme hybrid
