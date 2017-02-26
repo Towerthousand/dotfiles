@@ -17,6 +17,8 @@ set scrolloff=4
 set ignorecase
 set smartcase
 
+let g:enable_bold_font = 1
+
 " kill that nasty backup which will probably save my life but annoys me to
 " death everytime I commit to a new project
 set noswapfile
@@ -65,9 +67,16 @@ NeoBundle 'Valloric/YouCompleteMe', {
         \ 'cygwin'  : './install.py'
         \ }
      \ }
+NeoBundle 'shutnik/jshint2.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
 call neobundle#end()
 
-" Required: Lots of extensions use the filetype plugin
+" Required:
+" because everyone seems to use the filetype plugin
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
@@ -93,6 +102,7 @@ autocmd FileType python setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=
 autocmd FileType cpp setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType javascript setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType html setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType php setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType css setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
@@ -106,8 +116,7 @@ let g:airline_theme = "hybrid"
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-" Other syntastic settings
-let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
