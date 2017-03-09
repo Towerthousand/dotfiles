@@ -134,6 +134,7 @@ let g:ycm_auto_trigger = 1
 " command to jump to definition with YCM on new vsplit
 command Yvs execute "vs | YcmComplete GoTo"
 command Ysp execute "sp | YcmComplete GoTo"
+command Ygt execute "YcmComplete GoTo"
 command CI execute "%s/    /\t/g"
 " Install heavier stuff without worrying (i.e. YCM)
 let g:neobundle#install_process_timeout = 1500
