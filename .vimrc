@@ -58,6 +58,9 @@ NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'artoj/qmake-syntax-vim'
 NeoBundle 'a.vim'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'benmills/vimux'
+NeoBundle 'benmills/vimux-golang'
+NeoBundle 'fatih/vim-go'
 " Not needed unless you're doing heavy C/C++
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build'      : {
@@ -69,6 +72,7 @@ NeoBundle 'Valloric/YouCompleteMe', {
      \ }
 NeoBundle 'shutnik/jshint2.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
+
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -98,10 +102,13 @@ NeoBundleCheck
 " equals tabstop and expandtab is not set, vim will always use tabs.
 " When expandtab is set, vim will always use the appropriate number
 " of spaces. JUST WTF.
+autocmd FileType sh setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType python setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType go setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 autocmd FileType cpp setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType javascript setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType html setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType javascript setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType html setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType htmldjango setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType php setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType css setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
@@ -120,6 +127,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_python_checkers = ['pylint']
 " If you're using django:
 "let g:syntastic_python_pylint_args = '--load-plugins pylint_django'
@@ -131,11 +139,11 @@ let g:syntastic_cpp_checkers = []
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_auto_trigger = 1
+let g:ycm_goto_buffer_command = 'horizontal-split'
 " command to jump to definition with YCM on new vsplit
-command Yvs execute "vs | YcmComplete GoTo"
-command Ysp execute "sp | YcmComplete GoTo"
-command Ygt execute "YcmComplete GoTo"
-command CI execute "%s/    /\t/g"
+command Gt execute "GolangTestFocused"
+command Yg execute "YcmComplete GoTo"
+command Ci execute "%s/    /\t/g"
 " Install heavier stuff without worrying (i.e. YCM)
 let g:neobundle#install_process_timeout = 1500
 " Search paths for the YouCompleteMe HPP/CPP switcher plugin a.vim
@@ -146,8 +154,17 @@ let g:alternateSearchPath = 'reg:/src/include//,reg:/include/src//,sfr:../source
 set background=dark
 " Use the colors from the terminal
 let g:hybrid_custom_term_colors = 1
-"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 " Enable bold fonts
 let g:enable_bold_font = 1
 " Color scheme
 colorscheme hybrid
+
+" let g:syntastic_debug = 63
+
+" jshint
+let jshint2_read = 1
+let jshint2_save = 1
+
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
