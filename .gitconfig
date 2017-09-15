@@ -5,5 +5,7 @@
 	email = dani.torramilans@gmail.com
 [core]
 	editor = vim
+[commit]
+	verbose = true
 [diff]
-        tool = vimdiff
+	tool = vimdiff
