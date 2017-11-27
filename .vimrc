@@ -47,13 +47,14 @@ endif
 " Required, neobundle start
 call neobundle#begin(expand('~/.vim/bundle/'))
 
+" My Bundles here
 " Neobundle will manage these by itself
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-syntastic/syntastic'
+NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'artoj/qmake-syntax-vim'
 NeoBundle 'a.vim'
@@ -61,6 +62,8 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'benmills/vimux'
 NeoBundle 'benmills/vimux-golang'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'shutnik/jshint2.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 " Not needed unless you're doing heavy C/C++
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build'      : {
@@ -70,13 +73,9 @@ NeoBundle 'Valloric/YouCompleteMe', {
         \ 'cygwin'  : './install.py'
         \ }
      \ }
-NeoBundle 'shutnik/jshint2.vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
 
-
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
+" Required:
+" Tell Neobundle we're done specifying bundles
 call neobundle#end()
 
 " Required:
@@ -87,7 +86,7 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-" I need to write that paper on vim identation at some point
+" Vim identation settings 101:
 "
 " tabstop: how many columns a tab is displayed as
 "
@@ -113,16 +112,10 @@ autocmd FileType php setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 e
 autocmd FileType css setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-" Have branch in vim-airline
-let g:airline#extensions#branch#enabled=1
+" Airline theme
 let g:airline_theme = "hybrid"
 
-" Noob settings for syntastic. Uncomment these after it's installed,
-" otherwise it'll break before installing
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
+" Noob settings for syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
@@ -141,9 +134,12 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_auto_trigger = 1
 let g:ycm_goto_buffer_command = 'horizontal-split'
 " command to jump to definition with YCM on new vsplit
-command Gt execute "GolangTestFocused"
 command Yg execute "YcmComplete GoTo"
 command Ci execute "%s/    /\t/g"
+
+" COMMANDS:
+command Gt execute "GolangTestFocused"
+
 " Install heavier stuff without worrying (i.e. YCM)
 let g:neobundle#install_process_timeout = 1500
 " Search paths for the YouCompleteMe HPP/CPP switcher plugin a.vim
@@ -160,11 +156,13 @@ let g:enable_bold_font = 1
 " Color scheme
 colorscheme hybrid
 
+" In case syntastic is misbehaving, use this setting to debug it.
 " let g:syntastic_debug = 63
 
 " jshint
 let jshint2_read = 1
 let jshint2_save = 1
 
+" If you wanna use the Golang linter, install golang/lint and uncomment these
 " set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 " autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
