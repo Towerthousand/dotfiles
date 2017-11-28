@@ -51,6 +51,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Neobundle will manage these by itself
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rhubarb'
 NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-syntastic/syntastic'
@@ -115,7 +116,9 @@ autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 
 
 " Airline stuff
 let g:airline_theme = "hybrid"
+let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
 
 " Noob settings for syntastic
 let g:syntastic_always_populate_loc_list = 1
