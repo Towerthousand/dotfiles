@@ -113,8 +113,9 @@ autocmd FileType php setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 e
 autocmd FileType css setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-" Airline theme
+" Airline stuff
 let g:airline_theme = "hybrid"
+let g:airline#extensions#tabline#enabled = 1
 
 " Noob settings for syntastic
 let g:syntastic_always_populate_loc_list = 1
