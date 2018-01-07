@@ -66,6 +66,7 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'shutnik/jshint2.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'majutsushi/tagbar'
 " Not needed unless you're doing heavy C/C++
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build'      : {
@@ -113,6 +114,9 @@ autocmd FileType htmldjango setlocal smartindent tabstop=2 softtabstop=2 shiftwi
 autocmd FileType php setlocal smartindent tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd FileType css setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd FileType scss setlocal smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+" Tagbar alias
+nmap <F8> :TagbarToggle<CR>
 
 " Airline stuff
 let g:airline_theme = "hybrid"
