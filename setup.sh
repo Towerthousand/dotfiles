@@ -3,7 +3,7 @@
 set -e
 
 echo 'Ensuring dependencies..'
-sudo apt install git curl
+sudo apt install git curl dh-autoreconf
 
 echo 'Installing neobundle..'
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
@@ -11,12 +11,9 @@ sh ./install.sh
 rm ./install.sh
 
 echo 'Installing fonts..'
-# clone
 git clone https://github.com/powerline/fonts.git --depth=1
-# install
 cd fonts
 ./install.sh
-# clean-up a bit
 cd ..
 rm -rf fonts
 
@@ -29,4 +26,14 @@ curl -O https://raw.githubusercontent.com/goles/battery/master/battery
 sudo mv battery /usr/local/bin
 sudo chmod u+x /usr/local/bin/battery
 
-echo 'Remember to install YCM stuff, and switch the terminal font & colors.'
+echo 'Installing ctags...'
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags
+./autogen.sh
+./configure
+make
+sudo make install
+cd ..
+rm -rf ctags
+
+echo 'Remember to install YCM stuff after first vim startup, and switch the terminal font & colors.'
